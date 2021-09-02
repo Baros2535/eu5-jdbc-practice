@@ -3,20 +3,19 @@ package apitest;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import utilities.ConfigurationReader;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.baseURI;
+
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-
 import static org.testng.Assert.*;
 public class HomeWork1 {
     @BeforeClass
@@ -43,6 +42,8 @@ public class HomeWork1 {
     public void A1(){
         Response response = given().accept(ContentType.JSON).and().pathParam("country_id", "US")
                             .when().get("/countries/{country_id}");
+
+
         assertEquals(response.statusCode(),200);
         assertEquals(response.contentType(),"application/json");
         JsonPath jsonPath = response.jsonPath();
@@ -99,12 +100,13 @@ public class HomeWork1 {
     public void A3(){
         Response response = given().accept(ContentType.JSON).and().queryParam("q", "{\"region_id\":3}")
                 .when().get("/countries");
-assertEquals(response.statusCode(),200);
-assertEquals(response.contentType(),"application/json");
+
+       assertEquals(response.statusCode(),200);
+        assertEquals(response.contentType(),"application/json");
         JsonPath jsonPath = response.jsonPath();
         List<Integer> listOfRegion_Id = jsonPath.getList("items.region_id");
         for (int id : listOfRegion_Id) {
-            assertEquals(id,3);
+          assertEquals(id,3);
         }
         int count = jsonPath.getInt("count");
         assertEquals(count,6);
@@ -113,6 +115,7 @@ assertEquals(response.contentType(),"application/json");
         List<String> listOfCountryName = jsonPath.getList("items.country_name");
         List<String> expectedCountryName= Arrays.asList("Australia", "China", "India", "Japan", "Malaysia", "Singapore");
         assertEquals(listOfCountryName,expectedCountryName);
+
     }
 
 }
