@@ -1,12 +1,14 @@
 package apitest;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.*;
@@ -29,7 +31,16 @@ public class hrAPIWithPath {
         System.out.println("response.path(\"items[0]\") = " + response.path("items[0]"));
         System.out.println("response.path(\"items[0]\") = " + response.path("items[-1].country_id"));
         System.out.println("response.path(\"items[0]\") = " + response.path("items.country_id[-1]"));
+        System.out.println("response.path(\"items[-1].country_id\") = " + response.path("items[-1].country_id"));
         System.out.println("response.path(\"items[2].links[1]\") = " + response.path("items[2].links[0].href"));
+        JsonPath jsonPath = response.jsonPath();
+        Map<Object, Object> map = jsonPath.getMap("items[0]");
+        System.out.println("map.get(\"country_id\") = " + map.get("country_id"));
+        Map<String ,Object> json = jsonPath.get();
+        System.out.println("json = " + json);
+        System.out.println("map = " + map);
+       Map<String,Object> item1= response.path("items[1]");
+        System.out.println("item1 = " + item1);
 
         //assert that all regions ids equal to 2
         for (int i = 0; i < (int)response.path("count"); i++) {
