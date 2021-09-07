@@ -1,10 +1,13 @@
 package jdbctests;
 
+import org.testng.asserts.SoftAssert;
+
 import java.sql.*;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+
         String dbUrl="jdbc:oracle:thin:@44.197.133.197:1521:xe";
   String dbUsername="hr";
   String dbPassword="hr";

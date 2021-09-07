@@ -47,6 +47,8 @@ public class HomeWorkZipCode {
         Response response = given().accept(ContentType.JSON).with().pathParam("zipCode", 22031)
                               .when().get("/us/{zipCode}");
 
+        response.prettyPrint();
+
          assertEquals(response.statusCode(),200);
          assertEquals(response.contentType(),"application/json");
          assertEquals( response.header("Server"),"cloudflare");
