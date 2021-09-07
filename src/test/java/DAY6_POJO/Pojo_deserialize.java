@@ -14,7 +14,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 import static org.testng.Assert.*;
 
-import static io.restassured.RestAssured.baseURI;
+
 
 
 public class Pojo_deserialize {

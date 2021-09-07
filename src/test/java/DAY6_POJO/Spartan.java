@@ -9,7 +9,7 @@ package DAY6_POJO;
  *     "phone": 1938695106
  * }*/
 public class Spartan {
-    private int id;
+    private long id;
     private String name ,gender;
     private long phone;
 
@@ -23,7 +23,7 @@ public class Spartan {
     public Spartan() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
