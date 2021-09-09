@@ -22,7 +22,7 @@ public class HomeworkAPI2 {
 
 
     @Test
-    public void test() throws InterruptedException {
+    public void test(){
         Response response = given().accept(ContentType.JSON)
                 .queryParam("key", "5bda3aa0")
                 .when()
