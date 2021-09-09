@@ -11,6 +11,7 @@ import utilities.ExcelUtil;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Locale;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
@@ -21,7 +22,6 @@ public class HomeworkAPI1 {
         public void beforeClass(){
             baseURI= ConfigurationReader.get("spartanBaseURL");
         }
-
 
         //Optional homeworks
         //Homework-1
@@ -51,19 +51,21 @@ public class HomeworkAPI1 {
 
         @Test(dataProvider = "data")
         public void postWithDataprovider(String name,String gender,String phone){
-            System.out.println("phone = " + phone);
-            String phoneString=phone.substring(0,phone.indexOf("."))+phone.substring(2,phone.indexOf("E"));
-            System.out.println("phoneString = " + phoneString);
+
+            BigDecimal decimal=new BigDecimal(phone);
+
+           /* String phoneString=phone.substring(0,phone.indexOf("."))+phone.substring(2,phone.indexOf("E"));
+           System.out.println("phoneString = " + phoneString);
 
             if (phoneString.length()!=10){
                 phoneString=phoneString+"0";
-            }
-            System.out.println("phoneString = " + phoneString);
-            long phone1=Long.parseLong(phoneString);
+            }*/
+
+         long decimal2=decimal.longValue();
             Spartan spartanEU=new Spartan();
             spartanEU.setName(name);
             spartanEU.setGender(gender);
-            spartanEU.setPhone(phone1);
+            spartanEU.setPhone(decimal2);
             System.out.println("spartanEU = " + spartanEU);
 
             Response response = given()

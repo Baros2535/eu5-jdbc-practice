@@ -1,9 +1,11 @@
-package Day8;
+package Homework;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
+
+import java.time.LocalDate;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
