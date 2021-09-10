@@ -25,10 +25,9 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="fea85bf7-b4e6-4369-9495-5459bc8f8945">
-        <schema name="HR" object-types="table, materialized view, synonym, sequence, procedure, function, package, type, dimension, cluster, dblink" />
-        <schema name="PUBLIC" object-types="table, view, materialized view, synonym, sequence, function, package, type" />
-        <schema name="SP" object-types="table, view, materialized view, synonym, sequence, function, package, type, column, package function, type function" />
+      <connection connection-id="75ef748e-4096-40a2-b651-be847cdc3320">
+        <schema name="HR" object-types="table, view, materialized view, synonym" />
+        <schema name="PUBLIC" object-types="table, view, materialized view, synonym" />
       </connection>
     </loaded-nodes>
   </component>

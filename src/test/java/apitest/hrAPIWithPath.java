@@ -23,17 +23,30 @@ public class hrAPIWithPath {
 
     @Test
     public void test1(){
-        Response response = given().accept(ContentType.JSON).and().queryParam("q", "{\"region_id\":2}")
-                .when().get("/countries");
+        Response response = given().accept(ContentType.JSON)
+                .and()
+                .queryParam("q", "{\"region_id\":2}")
+                .when()
+                .get("/countries");
+response.prettyPrint();
         assertEquals(response.getStatusCode(),200);
-        System.out.println("response.path(\"limit\") = " + response.path("limit"));
+       /* System.out.println("response.path(\"limit\") = " + response.path("limit"));
         System.out.println("response.path(\"hasMore\") = " + response.path("hasMore"));
         System.out.println("response.path(\"items[0]\") = " + response.path("items[0]"));
         System.out.println("response.path(\"items[0]\") = " + response.path("items[-1].country_id"));
         System.out.println("response.path(\"items[0]\") = " + response.path("items.country_id[-1]"));
         System.out.println("response.path(\"items[-1].country_id\") = " + response.path("items[-1].country_id"));
         System.out.println("response.path(\"items[2].links[1]\") = " + response.path("items[2].links[0].href"));
+        */
+
         JsonPath jsonPath = response.jsonPath();
+    Map<String,Object>   countries= jsonPath.get();
+        System.out.println("countries.get(\"items\") = " + countries.get("items"));
+      List<Map<String,Object>> items= (List<Map<String, Object>>) countries.get("items");
+        System.out.println("response.path(\"items.country_id[10]\") = " + response.path("items.country_id[3]"));
+        System.out.println("response.path(\"items[10].country_id\") = " + response.path("items[3].country_id"));
+        System.out.println("items.get(0) = " + items.get(0));
+        System.out.println("items.get(1).get(\"country_id\") = " + items.get(1).get("country_id"));
         Map<Object, Object> map = jsonPath.getMap("items[0]");
         System.out.println("map.get(\"country_id\") = " + map.get("country_id"));
         Map<String ,Object> json = jsonPath.get();
